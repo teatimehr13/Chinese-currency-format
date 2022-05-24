@@ -8,7 +8,7 @@
     //判斷正確及錯誤的陣列
     const invalidArrays = [
   ["花", "三", "到"],
-  ["消", "色", "春"],
+  ["消", "色", "顏"],
     ];
 
     const validArrays = [
@@ -21,10 +21,13 @@
     function checkstr(inputArr,indexToValue){
         if(!Array.isArray(inputArr)||inputArr.length===0) return false;
         let prev = -1; //上一個
+        // console.log(inputArr);
         return inputArr.every((item)=>{  //用函數every檢測inputArr中的元素
+          console.log("test"+item);
             if(!indexToValue.has(item))return false; //如果inputArr中 有模版陣列中沒有的元素 false
             const indexToKey = indexToValue.get(item); //取得模版陣列的key值
             console.log("indexToKey=>"+indexToKey);
+            // console.log("prev"+prev);
             if(indexToKey<prev) return false; //陣列中當前的key小於上一個(左處)時
             prev = indexToKey;
             return true; //邏輯是輸入元素取得inputArr的key值拉出來比大小，並不是inputArr和indexToValue的key值比較
@@ -33,6 +36,6 @@
 
     console.log("Invalid arrays")
     invalidArrays.forEach(invalid => console.log(checkstr(invalid, indexToValue)));
-    console.log("Valid arrays")
-    validArrays.forEach(valid => console.log(checkstr(valid, indexToValue)));
+    // console.log("Valid arrays")
+    // validArrays.forEach(valid => console.log(checkstr(valid, indexToValue)));
 </script>
