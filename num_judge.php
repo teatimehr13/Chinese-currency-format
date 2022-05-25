@@ -11,8 +11,8 @@ function odd($var)
 
 
 
-$num = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
-$unit = ['十', '百', '千', '萬'];
+$num = ['一', '二', '三', '四', '五', '六', '七', '八', '九'];
+$unit = ['零', '十', '百', '千', '萬'];
 $unit_flip = array_flip($unit);
 
 $string ="";
@@ -38,14 +38,22 @@ for ($i = 0; $i <= $str_lenght; $i++) {
     //陣列偶數位為數字，出現單位的話為false
     if ($tmp % 2 == 0 && in_array($str[$i], $unit)) {
         $status = false;
-        if ($str[0] == "十") {
+        // echo $str[$i];
+        
+        if ($str[0] == "十" || $str[0] == "零") {
             $status = true;
         }
+        
     }
     //奇數位為單位
     if ($tmp % 2 != 0 && in_array($str[$i], $num)) {
         $status = false;
+        if($str[$i-1] == "零"){
+            $status = true;     
+        }
     }
+
+    
 
     if ($tmp & 1) {
         //判斷輸入的內容陣列中是否有單位重複
